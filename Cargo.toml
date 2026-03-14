@@ -1,0 +1,15 @@
+[package]
+name = "digit-recognition"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+# Candle core tensor engine
+candle-core = { git = "https://github.com/huggingface/candle", version = "0.9" }
+# Candle neural network building blocks
+candle-nn = { git = "https://github.com/huggingface/candle", version = "0.9" }
+
+# Serialization (saving/loading model weights)
+serde = { version = "1", features = ["derive"] }
+# Progress bar during training
+indicatif = "0.18.4"
