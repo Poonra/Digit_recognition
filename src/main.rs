@@ -3,6 +3,7 @@ mod model;
 mod train;
 mod eval;
 mod predict;
+mod app;
 
 use candle_core::Device;
 use candle_nn::{VarBuilder,VarMap};
@@ -28,10 +29,12 @@ fn main()->candle_core::Result<()> {
 
     eval::evaluate(&mnist, &model)?;
 
-    let test_image = mnist.test_images.get(5)?;
-    let true_label = mnist.test_labels.get(5)?.to_scalar::<u8>()?;
-
-    predict::predict(&model, &test_image, true_label)?;
+    let native_options = eframe::NativeOptions::default();
+    eframe::run_native(
+        "Digit Recognition",
+        native_options,
+        Box::new(|_cc| Ok(Box::new(app::DrawingApp::new(model, device)))),
+    ).unwrap();
 
     Ok(())
 }

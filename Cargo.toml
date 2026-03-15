@@ -13,3 +13,6 @@ candle-nn = { git = "https://github.com/huggingface/candle", version = "0.9" }
 serde = { version = "1", features = ["derive"] }
 # Progress bar during training
 indicatif = "0.18.4"
+eframe = "0.33.3"
+egui = "0.33.3"
+image = "0.25"
