@@ -1,6 +1,7 @@
 mod data;
 mod model;
 mod train;
+mod eval;
 use candle_core::Device;
 use candle_nn::{VarBuilder,VarMap};
 
@@ -23,5 +24,6 @@ fn main()->candle_core::Result<()> {
     train::train(&mnist, &varmap, &model)?;
     println!("training complete");
 
+    eval::evaluate(&mnist, &model)?;
     Ok(())
 }
