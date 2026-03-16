@@ -36,6 +36,8 @@ fn main()->candle_core::Result<()> {
     train::train(&mnist, &varmap, &model)?;
     println!("training complete");
 
+    train::finetune_on_collected(&varmap, &model, &device)?;
+
     varmap.save(weights_path)?;
     println!("Weights saved to {}", weights_path);
     }
