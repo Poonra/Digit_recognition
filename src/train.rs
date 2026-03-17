@@ -9,7 +9,7 @@ use std::fs;
 const LEARNING_RATE: f64 = 0.01;
 const EPOCHS: usize = 5;
 const BATCH_SIZE: usize = 64;
-const FINETUNE_REPEAT: usize = 150; 
+const FINETUNE_REPEAT: usize = 550; 
 #[derive(Deserialize)]
 struct Sample {
     pixels: Vec<f32>,
@@ -100,7 +100,7 @@ pub fn finetune_on_collected(
     let images = Tensor::from_vec(all_pixels, (n, 784), device)?;
     let labels = Tensor::from_vec(all_labels, (n,), device)?;
 
-    let mut opt = candle_nn::SGD::new(varmap.all_vars(), 0.01)?; // overwrite the mnist!!!
+    let mut opt = candle_nn::SGD::new(varmap.all_vars(), 0.05)?; // overwrite the mnist!!!
 
     let pb = ProgressBar::new(n as u64/ BATCH_SIZE as u64);
     pb.set_style(ProgressStyle::default_bar()
